@@ -1,6 +1,5 @@
 const Binance = require("binance-api-node").default;
 const binance = Binance();
-const talib = require("talib-binding");
 const _ = require("lodash");
 class Bot {
   constructor(id, ticker, interval) {
