@@ -9,8 +9,8 @@ class Bot {
     this.ticker = ticker;
     this.interval = interval;
     this.cache = [];
-    this.signals = {};
-
+    this.bullishSignals = {};
+    this.bearishSignals = {};
     console.log(`Bot for ${this.ticker} generated`);
 
     this.generateCache();
@@ -60,9 +60,30 @@ class Bot {
   checkSignals() {
     let self = this;
     setInterval(function () {
-      self.signals.aboveSMA50 = talib.aboveMA(self.candleData(close), 50);
-      self.signals.aboveSMA100 = talib.aboveMA(self.candleData(close), 100);
-      self.signals.aboveSMA200 = talib.aboveMA(self.candleData(close), 200);
+      self.bullishSignals.aboveSMA50 = talib.aboveMA(
+        self.candleData("close"),
+        50
+      );
+      self.bullishSignals.aboveSMA100 = talib.aboveMA(
+        self.candleData("close"),
+        100
+      );
+      self.bullishSignals.aboveSMA200 = talib.aboveMA(
+        self.candleData("close"),
+        200
+      );
+      self.bearishSignals.aboveEMA50 = talib.aboveEMA(
+        self.candleData("close"),
+        50
+      );
+      self.bearishSignals.aboveEMA100 = talib.aboveEMA(
+        self.candleData("close"),
+        100
+      );
+      self.bearishSignals.aboveEMA200 = talib.aboveEMA(
+        self.candleData("close"),
+        200
+      );
     }, 1000);
   }
 
