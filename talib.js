@@ -37,7 +37,7 @@ const bullishSMACross = function (closePrices, shortPeriod, longPeriod) {
   let long_value = _.last(result_long);
   let prev_long_value = result_long[result_long.length - 2];
 
-  return shortValue > longValue && prev_short_value <= prev_long_value;
+  return short_value > long_value && prev_short_value <= prev_long_value;
 };
 const bearishSMACross = function (closePrices, shortPeriod, longPeriod) {
   let result_short = talib.MA(closePrices, shortPeriod);
@@ -47,7 +47,7 @@ const bearishSMACross = function (closePrices, shortPeriod, longPeriod) {
   let long_value = _.last(result_long);
   let prev_long_value = result_long[result_long.length - 2];
 
-  return shortValue < longValue && prev_short_value >= prev_long_value;
+  return short_value < long_value && prev_short_value >= prev_long_value;
 };
 
 const bullishEMACross = function (closePrices, shortPeriod, longPeriod) {
@@ -58,7 +58,7 @@ const bullishEMACross = function (closePrices, shortPeriod, longPeriod) {
   let long_value = _.last(result_long);
   let prev_long_value = result_long[result_long.length - 2];
 
-  return shortValue > longValue && prev_short_value <= prev_long_value;
+  return short_value > long_value && prev_short_value <= prev_long_value;
 };
 const bearishEMACross = function (closePrices, shortPeriod, longPeriod) {
   let result_short = talib.EMA(closePrices, shortPeriod, talib.MATypes.EMA);
@@ -68,7 +68,7 @@ const bearishEMACross = function (closePrices, shortPeriod, longPeriod) {
   let long_value = _.last(result_long);
   let prev_long_value = result_long[result_long.length - 2];
 
-  return shortValue < longValue && prev_short_value >= prev_long_value;
+  return short_value < long_value && prev_short_value >= prev_long_value;
 };
 
 module.exports = {
