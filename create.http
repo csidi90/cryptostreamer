@@ -1,0 +1,8 @@
+POST localhost:3000/create 
+content-type: application/json
+
+{
+    "id": 2,
+    ticker: "ETHUSDT",
+    interval: "5m"
+}
