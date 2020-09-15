@@ -42,6 +42,17 @@ server.get("/:id/last", async function (req, res) {
   }
 });
 
+server.get("/signals/:id/last", async function (req, res) {
+  let bot = _.find(bots, function (o) {
+    return o.id == req.params.id;
+  });
+  if (bot != null && bot != undefined) {
+    res.status(200).json(bot.signals);
+  } else {
+    res.status(500).json({ message: "bot with given ID not found" });
+  }
+});
+
 server.post("/create", function (req, res) {
   let data = req.body;
 

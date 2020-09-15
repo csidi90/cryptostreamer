@@ -9,6 +9,8 @@ class Bot {
     this.ticker = ticker;
     this.interval = interval;
     this.cache = [];
+    this.signals = {};
+
     console.log(`Bot for ${this.ticker} generated`);
 
     this.generateCache();
@@ -58,11 +60,9 @@ class Bot {
   checkSignals() {
     let self = this;
     setInterval(function () {
-      console.log(
-        self.ticker +
-          " Above MA200:" +
-          talib.aboveEMA(self.candleData("close"), 9)
-      );
+      self.signals.aboveSMA50 = talib.aboveMA(self.candleData(close), 50);
+      self.signals.aboveSMA100 = talib.aboveMA(self.candleData(close), 100);
+      self.signals.aboveSMA200 = talib.aboveMA(self.candleData(close), 200);
     }, 1000);
   }
 
