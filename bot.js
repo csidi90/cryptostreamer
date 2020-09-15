@@ -1,6 +1,8 @@
 const Binance = require("binance-api-node").default;
 const binance = Binance();
 const _ = require("lodash");
+const talib = require("./talib");
+
 class Bot {
   constructor(id, ticker, interval) {
     this.id = id;
@@ -10,6 +12,7 @@ class Bot {
     console.log(`Bot for ${this.ticker} generated`);
 
     this.generateCache();
+    this.checkSignals();
   }
 
   async generateCache() {
@@ -50,6 +53,17 @@ class Bot {
         last.quoteAssetVolume = candle.quoteVolume;
       }
     });
+  }
+
+  checkSignals() {
+    let self = this;
+    setInterval(function () {
+      console.log(
+        self.ticker +
+          " Above MA200:" +
+          talib.aboveEMA(self.candleData("close"), 9)
+      );
+    }, 1000);
   }
 
   lastCandle() {
