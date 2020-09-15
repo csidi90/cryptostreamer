@@ -60,6 +60,7 @@ class Bot {
   checkSignals() {
     let self = this;
     setInterval(function () {
+      //BULLISH SIGNALS
       self.bullishSignals.aboveSMA50 = talib.aboveMA(
         self.candleData("close"),
         50
@@ -72,6 +73,13 @@ class Bot {
         self.candleData("close"),
         200
       );
+
+      self.bullishSignals.emaCross_9_27 = talib.bullishEMACross(
+        self.candleData("close"),
+        9,
+        27
+      );
+      //BEARISH SIGNALS
       self.bearishSignals.aboveEMA50 = talib.aboveEMA(
         self.candleData("close"),
         50
@@ -83,6 +91,11 @@ class Bot {
       self.bearishSignals.aboveEMA200 = talib.aboveEMA(
         self.candleData("close"),
         200
+      );
+      self.bearishSignals.emaCross_9_27 = talib.bearishEMACross(
+        self.candleData("close"),
+        9,
+        27
       );
     }, 1000);
   }

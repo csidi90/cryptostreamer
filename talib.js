@@ -80,4 +80,6 @@ module.exports = {
   bearishSMACross,
   bullishSMACross,
   bearishSMACross,
+  bullishEMACross,
+  bearishEMACross,
 };

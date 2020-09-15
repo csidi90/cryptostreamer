@@ -76,5 +76,4 @@ server.listen(PORT, async () => {
 
   //testing
   bots.push(new Bot(1, "BTCUSDT", "5m"));
-  bots.push(new Bot(2, "ETHUSDT", "5m"));
 });
