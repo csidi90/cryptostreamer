@@ -56,6 +56,10 @@ class Bot {
   lastCandle() {
     return _.last(this.cache);
   }
+
+  candleData(key) {
+    return _.map(this.cache, key);
+  }
 }
 
 module.exports = Bot;

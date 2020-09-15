@@ -59,5 +59,8 @@ server.post("/create", function (req, res) {
 
 server.listen(PORT, async () => {
   console.log(`server started on port ${PORT}`);
+
+  //testing
   bots.push(new Bot(1, "BTCUSDT", "5m"));
+  bots.push(new Bot(2, "ETHUSDT", "5m"));
 });
