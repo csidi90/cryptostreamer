@@ -11,12 +11,21 @@ class Bot {
     this.cache = [];
     this.bullishSignals = {};
     this.bearishSignals = {};
+    this.running = false;
     console.log(`Bot for ${this.ticker} generated`);
 
+    //API AND SECRED TO ADD
+  }
+
+  start() {
+    this.running = true;
     this.generateCache();
     this.checkSignals();
   }
 
+  stop() {
+    this.running = false;
+  }
   async generateCache() {
     this.cache = await binance.candles({
       symbol: this.ticker,
@@ -58,11 +67,13 @@ class Bot {
   }
 
   checkSignals() {
-    let self = this;
-    setInterval(function () {
-      self.checkBullishSignals();
-      self.checkBearishSignals();
-    }, 1000);
+    if (this.running) {
+      let self = this;
+      setInterval(function () {
+        self.checkBullishSignals();
+        self.checkBearishSignals();
+      }, 1000);
+    }
   }
 
   checkBullishSignals() {
