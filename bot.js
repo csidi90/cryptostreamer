@@ -20,22 +20,32 @@ class Bot {
   }
 
   shouldBuy() {
-    let conditionsMet = Object.keys(this.buyConditions).every(function (key) {
-      return this.buyConditions[key] === true;
+    let self = this;
+    let conditionsMet = Object.keys(self.buyConditions).every(function (key) {
+      return self.buyConditions[key] === true;
     });
-    console.log(isAllTrue);
+    if (conditionsMet) {
+      console.log("should buy " + conditionsMet);
+    }
   }
   shouldSell() {
-    let conditionsMet = Object.keys(this.sellConditions).every(function (key) {
-      return this.buyConditions[key] === true;
+    let self = this;
+    let conditionsMet = Object.keys(self.sellConditions).every(function (key) {
+      return self.buyConditions[key] === true;
     });
-    console.log(isAllTrue);
+    if (conditionsMet) {
+      console.log("should sell " + conditionsMet);
+    }
   }
 
   start() {
     this.running = true;
     this.generateCache();
     this.checkSignals();
+
+    console.log(
+      `starting bot ID: ${this.id} buy conditions: ${this.buyConditions} - sell conditions: ${this.sellConditions}`
+    );
   }
 
   stop() {
