@@ -25,7 +25,7 @@ class Bot {
       return self.buyConditions[key] === true;
     });
     if (conditionsMet) {
-      console.log("should buy " + conditionsMet);
+      console.log(new Date() + " should buy " + conditionsMet);
     }
   }
   shouldSell() {
@@ -34,7 +34,7 @@ class Bot {
       return self.buyConditions[key] === true;
     });
     if (conditionsMet) {
-      console.log("should sell " + conditionsMet);
+      console.log(new Date() + " should sell " + conditionsMet);
     }
   }
 
