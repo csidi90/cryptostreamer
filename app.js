@@ -56,6 +56,20 @@ server.get("/signals/:id", async function (req, res) {
   }
 });
 
+server.get("/conditions/:id", async function (req, res) {
+  let bot = _.find(bots, function (o) {
+    return o.id == req.params.id;
+  });
+  if (bot != null && bot != undefined) {
+    res.status(200).json({
+      buyConditions: bot.buyConditions,
+      sellConditions: bot.sellConditions,
+    });
+  } else {
+    res.status(500).json({ message: "bot with given ID not found" });
+  }
+});
+
 server.post("/create", function (req, res) {
   let data = req.body;
   console.log(data);
