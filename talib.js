@@ -1,3 +1,4 @@
+const dotenv = require("dotenv").config();
 const talib = require("talib-binding");
 const _ = require("lodash");
 
@@ -71,6 +72,31 @@ const bearishEMACross = function (closePrices, shortPeriod, longPeriod) {
   return short_value < long_value && prev_short_value >= prev_long_value;
 };
 
+/*
+RSI DETECTION
+*/
+
+const isOversold = function (closePrices) {
+  let rsi = talib.RSI(closePrices, process.env.RSI_DEFAULT_PERIOD);
+  let value = _.last(rsi);
+
+  if (value <= process.env.OVERSOLD_TRESHOLD) {
+    return true;
+  }
+
+  return false;
+};
+
+const isOverbought = function (closePrices) {
+  let rsi = talib.RSI(closePrices, process.env.RSI_DEFAULT_PERIOD);
+  let value = _.last(rsi);
+
+  if (value <= process.env.OVERBOUGHT_TRESHOLD) {
+    return true;
+  }
+
+  return false;
+};
 module.exports = {
   aboveMA,
   aboveEMA,
@@ -82,4 +108,6 @@ module.exports = {
   bearishSMACross,
   bullishEMACross,
   bearishEMACross,
+  isOverbought,
+  isOversold,
 };

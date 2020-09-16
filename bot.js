@@ -60,44 +60,146 @@ class Bot {
   checkSignals() {
     let self = this;
     setInterval(function () {
-      //BULLISH SIGNALS
-      self.bullishSignals.aboveSMA50 = talib.aboveMA(
-        self.candleData("close"),
-        50
-      );
-      self.bullishSignals.aboveSMA100 = talib.aboveMA(
-        self.candleData("close"),
-        100
-      );
-      self.bullishSignals.aboveSMA200 = talib.aboveMA(
-        self.candleData("close"),
-        200
-      );
-
-      self.bullishSignals.emaCross_9_27 = talib.bullishEMACross(
-        self.candleData("close"),
-        9,
-        27
-      );
-      //BEARISH SIGNALS
-      self.bearishSignals.aboveEMA50 = talib.aboveEMA(
-        self.candleData("close"),
-        50
-      );
-      self.bearishSignals.aboveEMA100 = talib.aboveEMA(
-        self.candleData("close"),
-        100
-      );
-      self.bearishSignals.aboveEMA200 = talib.aboveEMA(
-        self.candleData("close"),
-        200
-      );
-      self.bearishSignals.emaCross_9_27 = talib.bearishEMACross(
-        self.candleData("close"),
-        9,
-        27
-      );
+      self.checkBullishSignals();
+      self.checkBearishSignals();
     }, 1000);
+  }
+
+  checkBullishSignals() {
+    //BULLISH SIGNALS
+
+    this.bullishSignals.oversold = talib.isOversold(this.candleData("close"));
+
+    this.bullishSignals.aboveSMA50 = talib.aboveMA(
+      this.candleData("close"),
+      50
+    );
+    this.bullishSignals.aboveSMA100 = talib.aboveMA(
+      this.candleData("close"),
+      100
+    );
+    this.bullishSignals.aboveSMA200 = talib.aboveMA(
+      this.candleData("close"),
+      200
+    );
+
+    this.bullishSignals.aboveEMA50 = talib.aboveEMA(
+      this.candleData("close"),
+      50
+    );
+    this.bullishSignals.aboveEMA100 = talib.aboveEMA(
+      this.candleData("close"),
+      100
+    );
+    this.bullishSignals.aboveEMA200 = talib.aboveEMA(
+      this.candleData("close"),
+      200
+    );
+
+    this.bullishSignals.emaCross_9_27 = talib.bullishEMACross(
+      this.candleData("close"),
+      9,
+      27
+    );
+    this.bullishSignals.smaCross_50_100 = talib.bullishSMACross(
+      this.candleData("close"),
+      50,
+      100
+    );
+    this.bullishSignals.smaCross_50_200 = talib.bullishSMACross(
+      this.candleData("close"),
+      50,
+      200
+    );
+    this.bullishSignals.smaCross_100_200 = talib.bullishSMACross(
+      this.candleData("close"),
+      100,
+      200
+    );
+    this.bullishSignals.emaCross_50_100 = talib.bullishEMACross(
+      this.candleData("close"),
+      50,
+      100
+    );
+    this.bullishSignals.emaCross_50_200 = talib.bullishEMACross(
+      this.candleData("close"),
+      50,
+      200
+    );
+    this.bullishSignals.emaCross_100_200 = talib.bullishEMACross(
+      this.candleData("close"),
+      100,
+      200
+    );
+  }
+
+  checkBearishSignals() {
+    this.bearishSignals.overbought = talib.isOverbought(
+      this.candleData("close")
+    );
+
+    //BULLISH SIGNALS
+    this.bearishSignals.belowSMA50 = talib.belowMA(
+      this.candleData("close"),
+      50
+    );
+    this.bearishSignals.belowSMA100 = talib.belowMA(
+      this.candleData("close"),
+      100
+    );
+    this.bearishSignals.belowSMA200 = talib.belowMA(
+      this.candleData("close"),
+      200
+    );
+
+    this.bearishSignals.belowEMA50 = talib.belowEMA(
+      this.candleData("close"),
+      50
+    );
+    this.bearishSignals.belowEMA100 = talib.belowEMA(
+      this.candleData("close"),
+      100
+    );
+    this.bearishSignals.belowEMA200 = talib.belowEMA(
+      this.candleData("close"),
+      200
+    );
+
+    this.bearishSignals.emaCross_9_27 = talib.bearishEMACross(
+      this.candleData("close"),
+      9,
+      27
+    );
+    this.bearishSignals.smaCross_50_100 = talib.bearishSMACross(
+      this.candleData("close"),
+      50,
+      100
+    );
+    this.bearishSignals.smaCross_50_200 = talib.bearishSMACross(
+      this.candleData("close"),
+      50,
+      200
+    );
+    this.bearishSignals.smaCross_100_200 = talib.bearishSMACross(
+      this.candleData("close"),
+      100,
+      200
+    );
+    this.bearishSignals.emaCross_50_100 = talib.bearishEMACross(
+      this.candleData("close"),
+      50,
+      100
+    );
+    this.bearishSignals.emaCross_50_200 = talib.bearishEMACross(
+      this.candleData("close"),
+      50,
+      200
+    );
+    this.bearishSignals.emaCross_100_200 = talib.bearishEMACross(
+      this.candleData("close"),
+      100,
+      200
+    );
   }
 
   lastCandle() {
