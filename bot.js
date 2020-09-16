@@ -19,6 +19,19 @@ class Bot {
     //API AND SECRED TO ADD
   }
 
+  shouldBuy() {
+    let conditionsMet = Object.keys(this.buyConditions).every(function (key) {
+      return this.buyConditions[key] === true;
+    });
+    console.log(isAllTrue);
+  }
+  shouldSell() {
+    let conditionsMet = Object.keys(this.sellConditions).every(function (key) {
+      return this.buyConditions[key] === true;
+    });
+    console.log(isAllTrue);
+  }
+
   start() {
     this.running = true;
     this.generateCache();
@@ -28,6 +41,11 @@ class Bot {
   stop() {
     this.running = false;
   }
+
+  async openOrders() {
+    return await binance.futuresOpenOrders();
+  }
+
   async generateCache() {
     this.cache = await binance.candles({
       symbol: this.ticker,
@@ -74,6 +92,8 @@ class Bot {
       setInterval(function () {
         self.checkBullishSignals();
         self.checkBearishSignals();
+        self.shouldBuy();
+        self.shouldSell();
       }, 1000);
     }
   }

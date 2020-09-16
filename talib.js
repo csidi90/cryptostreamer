@@ -97,6 +97,7 @@ const isOverbought = function (closePrices) {
 
   return false;
 };
+
 module.exports = {
   aboveMA,
   aboveEMA,
