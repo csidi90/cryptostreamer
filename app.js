@@ -76,5 +76,6 @@ server.listen(PORT, async () => {
   console.log(`server started on port ${PORT}`);
 
   //testing
-  bots.push(new Bot(1, "ETHUSDT", "5m").start());
+  bots.push(new Bot(1, "ETHUSDT", "5m"));
+  bots[0].start();
 });

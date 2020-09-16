@@ -14,7 +14,7 @@ class Bot {
     this.running = false;
     this.buyConditions = [];
     this.sellConditions = [];
-    console.log(`Bot for ${this.ticker} generated`);
+    console.log(`Bot for ${this.ticker} ID: ${this.id} generated`);
 
     //API AND SECRED TO ADD
   }
@@ -213,6 +213,14 @@ class Bot {
       100,
       200
     );
+  }
+
+  getBullishConditions() {
+    return Object.keys(this.bullishSignals);
+  }
+
+  getBearishConditions() {
+    return Object.keys(this.bearishSignals);
   }
 
   lastCandle() {
