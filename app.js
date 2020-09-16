@@ -1,6 +1,7 @@
 const Binance = require("binance-api-node").default;
 const binance = Binance();
 
+const cors = require("cors");
 const dotenv = require("dotenv").config();
 const express = require("express");
 const server = express();
@@ -12,6 +13,7 @@ const Bot = require("./bot");
 
 let bots = [];
 
+server.use(cors());
 server.use(bodyParser.json());
 server.set("json spaces", 2);
 
@@ -129,5 +131,4 @@ server.listen(PORT, async () => {
   bots.push(new Bot(1, "ETHUSDT", "5m"));
   bots[0].buyConditions.push("oversold");
   bots[0].sellConditions.push("overbought");
-  
 });
