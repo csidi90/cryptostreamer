@@ -129,5 +129,5 @@ server.listen(PORT, async () => {
   bots.push(new Bot(1, "ETHUSDT", "5m"));
   bots[0].buyConditions.push("oversold");
   bots[0].sellConditions.push("overbought");
-  bots[0].start();
+  
 });
