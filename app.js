@@ -31,12 +31,48 @@ server.get("/:id", async function (req, res) {
   }
 });
 
+server.get("/history/:id", async function (req, res) {
+  let bot = _.find(bots, function (o) {
+    return o.id == req.params.id;
+  });
+
+  if (bot != null && bot != undefined) {
+    res.status(200).json(bot.history);
+  } else {
+    res.status(500).json({ message: "bot with given ID not found" });
+  }
+});
+
 server.get("/:id/last", async function (req, res) {
   let bot = _.find(bots, function (o) {
     return o.id == req.params.id;
   });
   if (bot != null && bot != undefined) {
     res.status(200).json(bot.lastCandle());
+  } else {
+    res.status(500).json({ message: "bot with given ID not found" });
+  }
+});
+
+server.get("/start/:id", async function (req, res) {
+  let bot = _.find(bots, function (o) {
+    return o.id == req.params.id;
+  });
+  if (bot != null && bot != undefined) {
+    res.status(200);
+    bot.start();
+  } else {
+    res.status(500).json({ message: "bot with given ID not found" });
+  }
+});
+
+server.get("/stop/:id", async function (req, res) {
+  let bot = _.find(bots, function (o) {
+    return o.id == req.params.id;
+  });
+  if (bot != null && bot != undefined) {
+    res.status(200);
+    bot.stop();
   } else {
     res.status(500).json({ message: "bot with given ID not found" });
   }

@@ -14,6 +14,7 @@ class Bot {
     this.running = false;
     this.buyConditions = [];
     this.sellConditions = [];
+    this.history = [];
     console.log(`Bot for ${this.ticker} ID: ${this.id} generated`);
 
     //API AND SECRED TO ADD
@@ -25,7 +26,10 @@ class Bot {
       return self.buyConditions[key] === true;
     });
     if (conditionsMet) {
-      console.log(new Date() + " should buy " + conditionsMet);
+      self.history.push({
+        Date: new Date(),
+        TYPE: "BUY",
+      });
     }
   }
   shouldSell() {
@@ -34,7 +38,10 @@ class Bot {
       return self.buyConditions[key] === true;
     });
     if (conditionsMet) {
-      console.log(new Date() + " should sell " + conditionsMet);
+      self.history.push({
+        Date: new Date(),
+        TYPE: "SELL",
+      });
     }
   }
 
