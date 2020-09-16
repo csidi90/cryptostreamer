@@ -12,6 +12,8 @@ class Bot {
     this.bullishSignals = {};
     this.bearishSignals = {};
     this.running = false;
+    this.buyConditions = [];
+    this.sellConditions = [];
     console.log(`Bot for ${this.ticker} generated`);
 
     //API AND SECRED TO ADD
