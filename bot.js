@@ -23,7 +23,7 @@ class Bot {
   shouldBuy() {
     let self = this;
     let conditionsMet = Object.keys(self.buyConditions).every(function (key) {
-      return self.buyConditions[key] === true;
+      return self.bullishSignals[key] === true;
     });
     if (conditionsMet) {
       self.history.push({
@@ -39,7 +39,7 @@ class Bot {
   shouldSell() {
     let self = this;
     let conditionsMet = Object.keys(self.sellConditions).every(function (key) {
-      return self.sellConditions[key] === true;
+      return self.bearishSignals[key] === true;
     });
     if (conditionsMet) {
       self.history.push({
