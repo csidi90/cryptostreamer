@@ -30,6 +30,10 @@ class Bot {
         Date: new Date(),
         TYPE: "BUY",
       });
+
+      if (self.history.length > 10) {
+        self.history.shift();
+      }
     }
   }
   shouldSell() {
@@ -42,6 +46,10 @@ class Bot {
         Date: new Date(),
         TYPE: "SELL",
       });
+
+      if (self.history.length > 10) {
+        self.history.shift();
+      }
     }
   }
 
