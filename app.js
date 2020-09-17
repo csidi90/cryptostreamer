@@ -126,6 +126,7 @@ server.post("/create", function (req, res) {
 
 server.post("/buyconditions", function (req, res) {
   let data = req.body;
+  console.log(data);
   let bot = _.find(bots, function (o) {
     return o.id == data.id;
   });
