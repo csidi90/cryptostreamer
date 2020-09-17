@@ -124,13 +124,35 @@ server.post("/create", function (req, res) {
   }
 });
 
+server.post("/buyconditions", function (req, res) {
+  let data = req.body;
+  let bot = _.find(bots, function (o) {
+    return o.id == data.id;
+  });
+  if (bot != null && bot != undefined) {
+    bot.buyConditions.push(data.condition);
+    res.status(200);
+  } else {
+    res.status(500).json({ message: "bot with given ID not found" });
+  }
+});
+
+server.post("/sellconditions", function (req, res) {
+  let data = req.body;
+  let bot = _.find(bots, function (o) {
+    return o.id == data.id;
+  });
+  if (bot != null && bot != undefined) {
+    bot.buyConditions.push(data.condition);
+    res.status(200);
+  } else {
+    res.status(500).json({ message: "bot with given ID not found" });
+  }
+});
+
 server.listen(PORT, async () => {
   console.log(`server started on port ${PORT}`);
 
   //testing
   bots.push(new Bot(1, "ETHUSDT", "5m"));
-  bots[0].buyConditions.push("oversold");
-  bots[0].buyConditions.push("aboveEMA50");
-  bots[0].buyConditions.push("aboveEMA100");
-  bots[0].sellConditions.push("overbought");
 });
