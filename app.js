@@ -126,6 +126,7 @@ server.post("/create", function (req, res) {
 
 server.post("/buyconditions", function (req, res) {
   let data = req.body;
+
   console.log(data);
   let bot = _.find(bots, function (o) {
     return o.id == data.id;
@@ -144,7 +145,7 @@ server.post("/sellconditions", function (req, res) {
     return o.id == data.id;
   });
   if (bot != null && bot != undefined) {
-    bot.buyConditions.push(data.condition);
+    bot.sellConditions.push(data.condition);
     res.status(200);
   } else {
     res.status(500).json({ message: "bot with given ID not found" });

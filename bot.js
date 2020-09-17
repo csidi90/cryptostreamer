@@ -22,34 +22,44 @@ class Bot {
 
   shouldBuy() {
     let self = this;
-    let conditionsMet = Object.keys(self.buyConditions).every(function (key) {
-      return self.bullishSignals[key] === true;
-    });
-    if (conditionsMet) {
+    let conditionCount = self.buyConditions.length;
+    let matchCount = 0;
+
+    for (let i of self.buyConditions) {
+      if (self.bullishSignals[i] == true) {
+        matchCount++;
+      }
+    }
+
+    if (matchCount == conditionCount) {
       self.history.push({
         Date: new Date(),
         TYPE: "BUY",
       });
-
-      if (self.history.length > 10) {
-        self.history.shift();
-      }
+    }
+    if (self.history.length > 10) {
+      self.history.shift();
     }
   }
   shouldSell() {
     let self = this;
-    let conditionsMet = Object.keys(self.sellConditions).every(function (key) {
-      return self.bearishSignals[key] === true;
-    });
-    if (conditionsMet) {
+    let conditionCount = self.buyConditions.length;
+    let matchCount = 0;
+
+    for (let i of self.sellConditions) {
+      if (self.bearishSignals[i] == true) {
+        matchCount++;
+      }
+    }
+
+    if (matchCount == conditionCount) {
       self.history.push({
         Date: new Date(),
         TYPE: "SELL",
       });
-
-      if (self.history.length > 10) {
-        self.history.shift();
-      }
+    }
+    if (self.history.length > 10) {
+      self.history.shift();
     }
   }
 
