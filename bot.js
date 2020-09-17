@@ -39,7 +39,7 @@ class Bot {
   shouldSell() {
     let self = this;
     let conditionsMet = Object.keys(self.sellConditions).every(function (key) {
-      return self.buyConditions[key] === true;
+      return self.sellConditions[key] === true;
     });
     if (conditionsMet) {
       self.history.push({
