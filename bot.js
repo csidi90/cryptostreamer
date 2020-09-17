@@ -21,45 +21,51 @@ class Bot {
   }
 
   shouldBuy() {
-    let self = this;
-    let conditionCount = self.buyConditions.length;
-    let matchCount = 0;
+    if (this.buyConditions.length > 0) {
+      let self = this;
+      let conditionCount = self.buyConditions.length;
+      let matchCount = 0;
 
-    for (let i of self.buyConditions) {
-      if (self.bullishSignals[i] == true) {
-        matchCount++;
+      for (let i of self.buyConditions) {
+        if (self.bullishSignals[i] == true) {
+          matchCount++;
+        }
       }
-    }
 
-    if (matchCount == conditionCount) {
-      self.history.push({
-        Date: new Date(),
-        TYPE: "BUY",
-      });
-    }
-    if (self.history.length > 10) {
-      self.history.shift();
+      if (matchCount == conditionCount) {
+        console.log(" buy true");
+        self.history.push({
+          Date: new Date(),
+          TYPE: "BUY",
+        });
+      }
+      if (self.history.length > 10) {
+        self.history.shift();
+      }
     }
   }
   shouldSell() {
-    let self = this;
-    let conditionCount = self.sellConditions.length;
-    let matchCount = 0;
+    if (this.sellConditions.length > 0) {
+      let self = this;
+      let conditionCount = self.sellConditions.length;
+      let matchCount = 0;
 
-    for (let i of self.sellConditions) {
-      if (self.bearishSignals[i] == true) {
-        matchCount++;
+      for (let i of self.sellConditions) {
+        if (self.bearishSignals[i] == true) {
+          matchCount++;
+        }
       }
-    }
 
-    if (matchCount == conditionCount) {
-      self.history.push({
-        Date: new Date(),
-        TYPE: "SELL",
-      });
-    }
-    if (self.history.length > 10) {
-      self.history.shift();
+      if (matchCount == conditionCount) {
+        console.log(" sell true");
+        self.history.push({
+          Date: new Date(),
+          TYPE: "SELL",
+        });
+      }
+      if (self.history.length > 10) {
+        self.history.shift();
+      }
     }
   }
 
