@@ -43,7 +43,7 @@ class Bot {
   }
   shouldSell() {
     let self = this;
-    let conditionCount = self.buyConditions.length;
+    let conditionCount = self.sellConditions.length;
     let matchCount = 0;
 
     for (let i of self.sellConditions) {
