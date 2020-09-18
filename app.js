@@ -21,6 +21,16 @@ server.get("/", async function (req, res) {
   res.status(200).json(bots);
 });
 
+server.get("/tickers", async function (req, res) {
+  let data = await binance.futuresAllBookTickers();
+
+  if (data != undefined) {
+    res.status(200).json(data);
+  } else {
+    res.status(500).json({ message: "failed to fetch tickers" });
+  }
+});
+
 server.get("/:id", async function (req, res) {
   let bot = _.find(bots, function (o) {
     return o.id == req.params.id;
@@ -91,16 +101,6 @@ server.get("/signals/:id", async function (req, res) {
     });
   } else {
     res.status(500).json({ message: "bot with given ID not found" });
-  }
-});
-
-server.get("/tickers", async function (req, res) {
-  let data = await binance.futuresAllBookTickers();
-  console.log(data);
-  if (data != undefined) {
-    res.status(200).json(data);
-  } else {
-    res.status(500).json({ message: "failed to fetch tickers" });
   }
 });
 
