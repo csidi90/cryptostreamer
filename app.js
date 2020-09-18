@@ -96,8 +96,8 @@ server.get("/signals/:id", async function (req, res) {
 
 server.get("/tickers", async function (req, res) {
   let data = await binance.futuresAllBookTickers();
-
-  if (data) {
+  console.log(data);
+  if (data != undefined) {
     res.status(200).json(data);
   } else {
     res.status(500).json({ message: "failed to fetch tickers" });
