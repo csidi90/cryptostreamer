@@ -94,6 +94,16 @@ server.get("/signals/:id", async function (req, res) {
   }
 });
 
+server.get("/tickers", async function (req, res) {
+  let data = await binance.futuresAllBookTickers();
+
+  if (data) {
+    res.status(200).json(data);
+  } else {
+    res.status(500).json({ message: "failed to fetch tickers" });
+  }
+});
+
 server.get("/conditions/:id", async function (req, res) {
   let bot = _.find(bots, function (o) {
     return o.id == req.params.id;
@@ -157,5 +167,4 @@ server.listen(PORT, async () => {
 
   //testing
   bots.push(new Bot(1, "ETHUSDT", "5m"));
-  
 });
