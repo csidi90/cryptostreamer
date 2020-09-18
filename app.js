@@ -122,7 +122,7 @@ server.post("/create", function (req, res) {
   let data = req.body;
   console.log(data);
 
-  if (data.id > -1) {
+  if (data.id != null) {
     bots.push(new Bot(data.id, data.ticker, data.interval));
     res.status(200).json({
       message: "bot successfully created",
