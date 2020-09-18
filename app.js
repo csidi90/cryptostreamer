@@ -134,6 +134,21 @@ server.post("/create", function (req, res) {
   }
 });
 
+server.post("/delete", function (req, res) {
+  let data = req.body;
+
+  if (data.id != null) {
+    bots = bots.filter((bot) => bot.id !== data.id);
+    res.status(200).json({
+      message: "bot successfully deleted",
+    });
+  } else {
+    res.status(500).json({
+      message: "could not delete bot",
+    });
+  }
+});
+
 server.post("/buyconditions", function (req, res) {
   let data = req.body;
 
