@@ -79,7 +79,7 @@ RSI DETECTION
 const isOversold = function (closePrices) {
   let rsi = talib.RSI(closePrices, process.env.RSI_DEFAULT_PERIOD);
   let value = _.last(rsi);
-  console.log(value);
+
   if (value <= process.env.OVERSOLD_TRESHOLD) {
     return true;
   }
