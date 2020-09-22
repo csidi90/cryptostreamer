@@ -155,7 +155,7 @@ server.post("/buyconditions", function (req, res) {
     return o.id == data.id;
   });
   if (bot != null && bot != undefined) {
-    if (!bot.buyConditions.contains(data.condition)) {
+    if (!bot.buyConditions.includes(data.condition)) {
       bot.buyConditions.push(data.condition);
     } else {
       bot.buyConditions = bot.buyConditions.filter(function (e) {
@@ -175,7 +175,7 @@ server.post("/sellconditions", function (req, res) {
     return o.id == data.id;
   });
   if (bot != null && bot != undefined) {
-    if (!bot.sellConditions.contains(data.condition)) {
+    if (!bot.sellConditions.includes(data.condition)) {
       bot.sellConditions.push(data.condition);
     } else {
       bot.sellConditions = bot.sellConditions.filter(function (e) {
