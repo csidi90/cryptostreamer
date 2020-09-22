@@ -155,10 +155,10 @@ server.post("/buyconditions", function (req, res) {
     return o.id == data.id;
   });
   if (bot != null && bot != undefined) {
-    if (!buyConditions.contains(data.condition)) {
+    if (!bot.buyConditions.contains(data.condition)) {
       bot.buyConditions.push(data.condition);
     } else {
-      buyConditions = buyConditions.filter(function (e) {
+      bot.buyConditions = bot.buyConditions.filter(function (e) {
         return e !== data.condition;
       });
     }
@@ -175,10 +175,10 @@ server.post("/sellconditions", function (req, res) {
     return o.id == data.id;
   });
   if (bot != null && bot != undefined) {
-    if (!sellConditions.contains(data.condition)) {
+    if (!bot.sellConditions.contains(data.condition)) {
       bot.sellConditions.push(data.condition);
     } else {
-      sellConditions = sellConditions.filter(function (e) {
+      bot.sellConditions = bot.sellConditions.filter(function (e) {
         return e !== data.condition;
       });
     }
